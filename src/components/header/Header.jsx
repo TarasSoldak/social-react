@@ -9,6 +9,7 @@ const Header = ({ isAuth, login, logOutUser }) => {
       <div>
         <img src={logo} alt="img" />
       </div>
+      <h1>Social Network React</h1>
       <div>
         <div>
           {isAuth ? (
