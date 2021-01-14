@@ -1,0 +1,7 @@
+.loader img {
+  position: absolute;
+  width: 100px;
+  top: 50%;
+  left: 48%;
+  z-index: 2;
+}

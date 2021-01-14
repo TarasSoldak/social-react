@@ -1,0 +1,19 @@
+.button button {
+  color: white;
+  text-shadow: 0.5px 1px 1px #000;
+  font-weight: bold;
+  border: 1px solid purple;
+  background-color: purple;
+  padding: 2px 5px;
+  box-shadow: 0 0 3px 3px purple;
+  border-radius: 1px;
+  cursor: pointer;
+  outline-style: none;
+  display: inline;
+}
+.button button:hover {
+  color: black;
+}
+.button {
+  display: inline-block;
+}

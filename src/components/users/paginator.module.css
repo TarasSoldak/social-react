@@ -1,0 +1,22 @@
+.pageNumber {
+  width: 28px;
+  padding: 4px;
+  border: 2px solid purple;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 3px;
+  cursor: pointer;
+  text-align: center;
+}
+span .pageNumber {
+  background: rgb(146, 143, 143);
+  color: white;
+  font-weight: bold;
+}
+
+.page .pageNumber {
+  color: purple;
+}
+.paginator button {
+  margin: 0 5px;
+}

@@ -1,0 +1,6 @@
+.home {
+  background: url("./create-react-app.jpg") 50% no-repeat;
+  background-size: cover;
+  height: 500px;
+  box-shadow: inset 0 0 5px 5px black;
+}

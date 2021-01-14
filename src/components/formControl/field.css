@@ -1,0 +1,23 @@
+.field input {
+  margin-bottom: 20px;
+}
+
+.field input {
+  width: 200px;
+  height: 20px;
+  border-style: none;
+  border-bottom: 2px solid purple;
+  border-right: 2px solid purple;
+  border-radius: 3px;
+  outline-style: none;
+}
+.error {
+  color: red;
+  position: absolute;
+  margin: 0 10px;
+  border: 1px solid red;
+  border-radius: 3px;
+  background: white;
+  padding: 3px 4px;
+  z-index: 2;
+}
