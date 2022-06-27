@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/social-react/static/css/main.b9c946b6.chunk.css",
+    "main.js": "/social-react/static/js/main.6fd878c3.chunk.js",
+    "main.js.map": "/social-react/static/js/main.6fd878c3.chunk.js.map",
+    "runtime-main.js": "/social-react/static/js/runtime-main.33252054.js",
+    "runtime-main.js.map": "/social-react/static/js/runtime-main.33252054.js.map",
+    "static/js/2.3e57c1a2.chunk.js": "/social-react/static/js/2.3e57c1a2.chunk.js",
+    "static/js/2.3e57c1a2.chunk.js.map": "/social-react/static/js/2.3e57c1a2.chunk.js.map",
+    "index.html": "/social-react/index.html",
+    "static/css/main.b9c946b6.chunk.css.map": "/social-react/static/css/main.b9c946b6.chunk.css.map",
+    "static/js/2.3e57c1a2.chunk.js.LICENSE.txt": "/social-react/static/js/2.3e57c1a2.chunk.js.LICENSE.txt",
+    "static/media/830.38a5c8dd.png": "/social-react/static/media/830.38a5c8dd.png",
+    "static/media/index.css": "/social-react/static/media/Data.5b8ce4c2.jpg",
+    "static/media/home.css": "/social-react/static/media/create-react-app.e2d04c98.jpg",
+    "static/media/man-icon.cc23b0e9.png": "/social-react/static/media/man-icon.cc23b0e9.png",
+    "static/media/react-redux.45917d58.png": "/social-react/static/media/react-redux.45917d58.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.33252054.js",
+    "static/js/2.3e57c1a2.chunk.js",
+    "static/css/main.b9c946b6.chunk.css",
+    "static/js/main.6fd878c3.chunk.js"
+  ]
+}
