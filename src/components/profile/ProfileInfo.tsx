@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { ChangeEvent,  FC, useState } from "react";
 import Preloader from "../preloader/Preloader";
 import ava from "../users/man-icon.png";
 import ProfileDataForm from "./ProfileDataForm";
 import "./profile.css";
 import ProfileStatus from "./ProfileStatus";
 import Button from "../button/Button";
+import { ContactsType, GetProfileType } from "../redux/profileReducer";
 
-const ProfileInfo = ({
+
+type PropsType = {
+  profile: GetProfileType | null
+  isOwner: boolean
+  savePhoto: (file: File) => void
+  saveProfile: (profile: GetProfileType) => Promise<any>
+  status: string 
+  updateUserStatus: (status: string) => void
+}
+
+const ProfileInfo: FC<PropsType> = ({
   profile,
   isOwner,
   savePhoto,
@@ -21,12 +32,12 @@ const ProfileInfo = ({
   if (!profile) {
     return <Preloader />;
   }
-  const onMainPhotoChange = (e) => {
-    if (e.target.files.length) {
+  const onMainPhotoChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.length) {
       savePhoto(e.target.files[0]);
     }
   };
-  const onSubmit = (formData) => {
+  const onSubmit = (formData: GetProfileType) => {
     saveProfile(formData).then(() => {
       setEditMod(false);
     });
@@ -68,12 +79,17 @@ const ProfileInfo = ({
     </div>
   );
 };
-const ProfileData = ({ profile, isOwner, goToEditMod }) => {
+type ProfileDataType = {
+  profile: GetProfileType
+  isOwner: boolean
+  goToEditMod: () => void
+}
+const ProfileData: FC<ProfileDataType> = ({ profile, isOwner, goToEditMod }) => {
   return (
     <div className="data-container">
       {isOwner && (
         <div>
-          <Button title="Edit" onClick={goToEditMod} />
+          <Button disabled={false} title="Edit" onClick={goToEditMod} />
         </div>
       )}
       <div>
@@ -107,7 +123,7 @@ const ProfileData = ({ profile, isOwner, goToEditMod }) => {
             <Contact
               key={key}
               contactTitle={key}
-              contactValue={profile.contacts[key]}
+              contactValue={profile.contacts[key as keyof ContactsType]}
             />
           );
         })}
@@ -115,8 +131,11 @@ const ProfileData = ({ profile, isOwner, goToEditMod }) => {
     </div>
   );
 };
-
-const Contact = ({ contactTitle, contactValue }) => {
+type ContactType = {
+  contactTitle: string
+  contactValue: string
+}
+const Contact: FC<ContactType> = ({ contactTitle, contactValue }) => {
   return (
     <div>
       <h4>

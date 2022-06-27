@@ -1,11 +1,17 @@
 import React from "react";
+import { WrappedFieldsProps } from "redux-form";
 import "./field.css";
+type CreateFieldType={
+  label:string
+  type:string
 
-const CreateField = ({
+}
+const CreateField: React.FC<WrappedFieldsProps & CreateFieldType> = ({
   input,
   label,
   type,
   meta: { touched, error, warning },
+  
 }) => {
   return (
     <div className="field">

@@ -1,35 +1,42 @@
-import React from "react";
+import React, { ComponentType } from "react";
 import "./App.css";
 import Navbar from "../navbar/Navbar";
-import Users from "../users/Users";
 import Profile from "../profile/Profile";
 import Home from "../home/Home";
 import Login from "../login/Login";
 import Preloader from "../preloader/Preloader";
-import HeaderContainer from "../header/HeaderContainer";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { initializationApp } from "../redux/appReducer";
 import { compose } from "redux";
+import { RootState } from "../redux/store";
+import Header from "../header/Header";
+import UsersHook from "../users/UsersHook";
+import Chat from "../chat/Chat";
 
-class App extends React.Component {
+type MapStatePropsType = ReturnType<typeof mapStateToProps>
+type DispatchPropsType ={
+  initializationApp:()=>void
+}
+class App extends React.Component<MapStatePropsType & DispatchPropsType> {
   componentDidMount() {
     this.props.initializationApp();
   }
   render() {
-    if (!this.props.initialization) {
+    if (!this.props.initializationApp) {
       return <Preloader />;
     }
     return (
       <div className="app">
         <div>
-          <HeaderContainer />
+          <Header/>
           <Navbar />
         </div>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/home" component={Home} />
-          <Route path="/users" component={Users} />
+          <Route path="/users" component={UsersHook} />
+          <Route path="/chat" component={Chat} />
           <Route path="/profile/:userId?" component={Profile} />
           <Route path="/login" component={Login} />
         </Switch>
@@ -37,10 +44,10 @@ class App extends React.Component {
     );
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = (state:RootState) => {
   return { initialization: state.app.initialization };
 };
-export default compose(
+export default compose<ComponentType>(
   withRouter,
   connect(mapStateToProps, { initializationApp })
 )(App);

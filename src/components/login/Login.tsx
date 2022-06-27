@@ -3,15 +3,33 @@ import "./login.css";
 import "../formControl/field.css";
 import CreateField from "../formControl/CreateField";
 import Button from "../button/Button";
-import { Field, reduxForm } from "redux-form";
+import { Field, InjectedFormProps, reduxForm } from "redux-form";
 import { maxLength, required, minLength } from "../validators/validators";
-import { connect } from "react-redux";
+import {  useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../redux/authReducer";
 import { Redirect } from "react-router-dom";
+import { RootState } from "../redux/store";
 
-const Login = ({ loginUser, isAuth, captchaUrl }) => {
-  const submit = (values) => {
-    loginUser(values.email, values.password, values.rememberMe, values.captcha);
+// type MapStateType={
+//   isAuth:boolean
+//   captchaUrl:string | null
+// }
+// type MapDispatchType={
+//   loginUser: (email: string, passward: string, rememberMe: boolean, captcha: string)=>void
+// }
+type LoginValuesType={
+  email:string
+  password:string
+  rememberMe:boolean
+  captcha:string 
+}
+
+const Login: React.FC = () => {
+const dispatch =useDispatch()
+  const { isAuth, captchaUrl}= useSelector((state:RootState)=>state.auth )
+
+  const submit = (values: LoginValuesType) => {
+    dispatch(loginUser(values.email, values.password, values.rememberMe, values.captcha));
   };
   if (isAuth) {
     return <Redirect to="/profile" />;
@@ -23,19 +41,18 @@ const Login = ({ loginUser, isAuth, captchaUrl }) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuth,
-    captchaUrl: state.auth.captchaUrl,
-  };
-};
 
-export default connect(mapStateToProps, { loginUser })(Login);
+
+export default Login
 
 const maxLength25 = maxLength(25);
 const minlength4 = minLength(4);
 
-const LoginForm = ({ handleSubmit, captchaUrl, error }) => {
+type LoginFormOwnType={
+  captchaUrl:string | null
+}
+const LoginForm: React.FC<InjectedFormProps<LoginValuesType, LoginFormOwnType> 
+& LoginFormOwnType> = ({ handleSubmit, captchaUrl, error }) => {
   return (
     <form onSubmit={handleSubmit} className="form">
       <div className="form-block">
@@ -66,13 +83,13 @@ const LoginForm = ({ handleSubmit, captchaUrl, error }) => {
         )}
 
         <div>
-          <Button title="Submit" />
+          <Button disabled={false}  title="Submit" />
           <span>{error && <span className="error">{error}</span>}</span>
         </div>
       </div>
     </form>
   );
 };
-const LoginReduxForm = reduxForm({
+const LoginReduxForm = reduxForm<LoginValuesType, LoginFormOwnType>({
   form: "login",
 })(LoginForm);

@@ -1,8 +1,9 @@
 import React from "react";
 import "./navbar.css";
 import { NavLink } from "react-router-dom";
+import { FC } from "react";
 
-const Navbar = () => {
+const Navbar:FC = () => {
   return (
     <div className="navbar">
       <ul>
@@ -19,6 +20,11 @@ const Navbar = () => {
         <li>
           <NavLink to="/profile" activeClassName="active">
             Profile
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/chat" activeClassName="active">
+            Chat
           </NavLink>
         </li>
         <li>

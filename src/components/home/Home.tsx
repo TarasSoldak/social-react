@@ -1,7 +1,8 @@
 import React from "react";
+import { FC } from "react";
 import "./home.css";
 
-const Home = () => {
+const Home:FC = () => {
   return <div className="home"></div>;
 };
 

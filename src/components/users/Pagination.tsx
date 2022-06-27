@@ -3,13 +3,15 @@ import Button from "../button/Button";
 import style from "./paginator.module.css";
 import "./users.css";
 
-const Pagination = ({
-  totalUsersCount,
-  pageSize,
-  onPageChange,
-  currentPage,
-  portionSize = 26,
-}) => {
+type PropsType = {
+  totalUsersCount: number
+  pageSize: number
+  onPageChange: (pageNumber: number) => void
+  currentPage: number
+  portionSize?: number
+}
+
+const Pagination: React.FC<PropsType> = ({ totalUsersCount, pageSize, onPageChange, currentPage, portionSize = 26, }) => {
   const pageCount = Math.ceil(totalUsersCount / pageSize);
   let pages = [];
   for (let i = 1; i < pageCount; i++) {
@@ -25,6 +27,7 @@ const Pagination = ({
     <div className={style.paginator}>
       {portionNumber > 1 && (
         <Button
+          disabled={false}
           onClick={() => setPortionNumber(portionNumber - 1)}
           title="Prev"
         />
@@ -46,6 +49,7 @@ const Pagination = ({
         })}
       {portionCount > portionNumber && (
         <Button
+          disabled={false}
           onClick={() => setPortionNumber(portionNumber + 1)}
           title="Next"
         />
